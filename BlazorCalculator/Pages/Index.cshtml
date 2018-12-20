@@ -1,0 +1,141 @@
+﻿@page "/"
+<h1>Калькулятор</h1>
+<br />
+<div class="CalcWrapper">
+    <div class="textwrap">
+        <span class="text2">@text2</span>
+        <span class="text1">@text1</span>
+    </div>
+
+
+    <div class="bRow">
+        <button type="button" class="btn btn-light btn-calc" onclick="@(()=> Clear(0))">C</button>
+        <button type="button" class="btn btn-light btn-calc" onclick="@(()=> Clear(1))"><-</button>
+        <button type="button" class="btn btn-light btn-calc" onclick="@(()=> BtnClick(5))">%</button>
+        <button type="button" class="btn btn-light btn-calc" onclick="@(()=> BtnClick(1))">+</button>
+    </div>                               
+                                         
+    <div class="bRow">                   
+        <button type="button" class="btn btn-light btn-calc" onclick="@(()=> BtnClick("7"))">7</button>
+        <button type="button" class="btn btn-light btn-calc" onclick="@(()=> BtnClick("8"))">8</button>
+        <button type="button" class="btn btn-light btn-calc" onclick="@(()=> BtnClick("9"))">9</button>
+        <button type="button" class="btn btn-light btn-calc" onclick="@(()=> BtnClick(2))">-</button>
+    </div>                              
+                                        
+    <div class="bRow">                  
+        <button type="button" class="btn btn-light btn-calc" onclick="@(()=> BtnClick("4"))">4</button>
+        <button type="button" class="btn btn-light btn-calc" onclick="@(()=> BtnClick("5"))">5</button>
+        <button type="button" class="btn btn-light btn-calc" onclick="@(()=> BtnClick("6"))">6</button>
+        <button type="button" class="btn btn-light btn-calc" onclick="@(()=> BtnClick(3))">*</button>
+    </div>                            
+                                      
+    <div class="bRow">                
+        <button type="button" class="btn btn-light btn-calc" onclick="@(()=> BtnClick("1"))">1</button>
+        <button type="button" class="btn btn-light btn-calc" onclick="@(()=> BtnClick("2"))">2</button>
+        <button type="button" class="btn btn-light btn-calc" onclick="@(()=> BtnClick("3"))">3</button>
+        <button type="button" class="btn btn-light btn-calc" onclick="@(()=> BtnClick(4))">/</button>
+    </div>                              
+                                        
+    <div class="bRow">                  
+        <button type="button" class="btn btn-light btn-calc" onclick="@(()=> BtnClick("0"))">0</button>
+        <button type="button" class="btn btn-light btn-calc" onclick="@(()=> BtnClick("."))">.</button>
+        <button type="button" class="btn btn-dark btn-calc enter" onclick="@(()=> Calculate())">=</button>
+    </div>
+</div>
+
+<footer>
+    <p>Автор - Владимир Ковалёв <a href="https://github.com/darkhorse77">(https://github.com/darkhorse77)</a>. Приложение создано с использованием фреймворка Blazor на платформе .NET</p>
+</footer>
+
+@functions {
+    
+    string text1 = "";
+    string text2 = "";
+    double a, b;
+    int count;
+
+    void BtnClick(string x) // событие для нажатия кнопок с цифрами и точкой
+    {
+        text1 += x;
+    }
+
+    void BtnClick(int count) // событие для операций
+    {
+        a = double.Parse(text1);
+        text1 = "";
+        this.count = count;
+        switch (count)
+        {
+            case 1:
+                text2 = a.ToString() + " + ";
+                break;
+            case 2:
+                text2 = a.ToString() + " - ";
+                break;
+            case 3:
+                text2 = a.ToString() + " * ";
+                break;
+            case 4:
+                text2 = a.ToString() + " / ";
+                break;
+            case 5:
+                text2 = a.ToString() + " % ";
+                break;
+            default:
+                break;
+        }
+    }
+
+    void Calculate()
+    {
+        this.text2 = "";
+
+        switch (count)
+        {
+            case 1:
+                b = a + double.Parse(text1);
+                text1 = b.ToString();
+                break;
+            case 2:
+                b = a - double.Parse(text1);
+                text1 = b.ToString();
+                break;
+            case 3:
+                b = a * double.Parse(text1);
+                text1 = b.ToString();
+                break;
+            case 4:
+                b = a / double.Parse(text1);
+                text1 = b.ToString();
+                break;
+            case 5:
+                b = a % double.Parse(text1);
+                text1 = b.ToString();
+                break;
+            default:
+                break;
+        }
+    }
+
+    void Clear(int x) // очистка
+    {
+        switch (x)
+        {
+            case 0:             //   
+                text1 = "";     // полная очистка
+                text2 = "";     //
+                break;
+            case 1:
+                int length = text1.Length - 1;     
+                string line = text1;               
+                text1 = "";                        
+                for (int i = 0; i < length; i++)   // удаление только последнего символа
+                {                                  
+                    text1 += line[i];              
+                }                                  
+                break;
+            default:
+                break;
+        }
+    }
+}

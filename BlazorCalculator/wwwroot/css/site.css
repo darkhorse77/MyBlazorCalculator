@@ -1,0 +1,81 @@
+﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
+
+html, body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.btn-calc {
+    width: 70px;
+    height: 40px;
+    margin: 5px;
+    /*border: 1px solid black;*/
+    /*cursor: pointer;
+    background-color: #f8f9fa;*/
+}
+
+.btn-light {
+    border: 1px solid #343a40;
+}
+
+.btn-light:hover {
+    border: 1px solid #191b1e;
+}
+
+footer {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    width: 90%;
+    height: 20px;
+}
+
+.wrapper {
+    user-select: none;
+    padding-top: 10%;
+}
+
+.wrapper h1 {
+    text-align: center;
+}
+
+.CalcWrapper {
+    width: 370px; /* Ширина элемента в пикселах */
+    padding: 10px; /* Поля вокруг текста */
+    margin: auto; /* Выравниваем по центру */
+}
+
+.bRow {
+    width: 360px;
+    margin-left: 7px;
+}
+
+.enter {
+    width: 155px;
+}
+
+.text2 {
+    font-size: 12px;
+    float: right;
+    position: absolute;
+    width: 324px;
+    padding: 0 2px;
+}
+
+.text1 {
+    margin-top: 13px;
+    margin-right: 2px;
+    font-size: 20px;
+}
+
+.textwrap { /* Этот класс объединяет 2 textboxa в одну рамку */
+    border: 1px solid #808080;
+    display: block;
+    height: 40px;
+    margin: 0 12px 5px 12px;
+    text-align: right;
+    padding: 0;
+}
+
+.textwrap span {
+    display: block;
+}
